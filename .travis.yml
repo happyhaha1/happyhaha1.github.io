@@ -4,10 +4,9 @@ node_js:
 branches:
   only:
   - sources
-env:
-  global:
-      REPO:
-          github.com:happyhaha1/happyhaha1.github.io.git
+cache:
+  directories:
+    - node_modules
 before_install:
 - export TZ='Asia/Shanghai'
 - npm install -g hexo
@@ -15,11 +14,12 @@ before_install:
 before_script:
 - git config --global user.name "happyhaha1"
 - git config --global user.email "happyzhengkaixin@gmail.com" 
-- sed -i'' "s~git@${REPO}~https://${GH_TOKEN}:x-oauth-basic@${REPO}~" _config.yml
+- sed -i'' "s~git@github.com:happyhaha1/happyhaha1.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com:happyhaha1/happyhaha1.github.io.git~" _config.yml
 install:
 - npm install
 script:
 - hexo clean
 - hexo generate
 after_success:
+- cat _config.yml
 - hexo deploy
