@@ -16,7 +16,6 @@ before_script:
 - git config --global user.name "happyhaha1"
 - git config --global user.email "happyzhengkaixin@gmail.com" 
 - sed -i'' "s~git@${REPO}~https://${GH_TOKEN}:x-oauth-basic@${REPO}~" _config.yml
-k
 install:
 - npm install
 script:
